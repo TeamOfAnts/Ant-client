@@ -31,12 +31,13 @@
     "typeRoots": ["./node_modules/@types", "src/@types"],
     "paths": {
       "@assets/*": ["src/assets/*"],
-      "@libs/*": ["src/app/libs/*"],
+      "@libs/*": ["src/app/shared/libs/*"],
       "@components": ["src/app/components"],
       "@screens": ["src/app/screens"],
       "@routes": ["src/app/routes"],
       "@models": ["src/app/models"],
       "@repositories": ["src/app/repositories"],
+      "@shared/*": ["src/app/shared/*"],
       "@/*": ["./src/*"]
     },
     "outDir": "./dist"
