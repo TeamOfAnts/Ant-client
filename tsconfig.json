@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "ES2023"],
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "noUncheckedSideEffectImports": true,
+
+
+    /* paths */
+    "baseUrl": "./",
+    "typeRoots": ["./node_modules/@types", "src/@types"],
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@libs/*": ["src/app/libs/*"],
+      "@components": ["src/app/components"],
+      "@screens": ["src/app/screens"],
+      "@routes": ["src/app/routes"],
+      "@models": ["src/app/models"],
+      "@repositories": ["src/app/repositories"],
+      "@/*": ["./src/*"]
+    },
+    "outDir": "./dist"
+  },
+  "include": ["./", ".eslintrc.js"],
+  "exclude": ["node_modules"]
+}
