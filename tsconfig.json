@@ -22,25 +22,19 @@
     /* Linting */
     "strict": true,
     "strictNullChecks": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "noUncheckedSideEffectImports": true,
-
 
     /* paths */
     "baseUrl": "./",
     "typeRoots": ["./node_modules/@types"],
     "paths": {
       "@assets/*": ["src/assets/*"],
-      "@libs/*": ["src/app/shared/libs/*"],
-      "@components": ["src/app/components"],
-      "@screens": ["src/app/screens"],
-      "@routes": ["src/app/routes"],
-      "@models": ["src/app/models"],
-      "@repositories": ["src/app/repositories"],
-      "@shared/*": ["src/app/shared/*"],
+      "@libs/*": ["src/shared/libs/*"],
+      "@pages": ["src/pages"],
+      "@shared/*": ["src/shared/*"],
+      "@features": ["src/features"],
       "@/*": ["./src/*"]
     },
     "outDir": "./dist"
