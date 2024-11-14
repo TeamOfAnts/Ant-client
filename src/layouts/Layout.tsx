@@ -13,7 +13,7 @@ function Layout(props: { children: ReactNode }) {
   return (
     <div className="flex h-screen">
       <SideBar />
-      <main className="flex-1 p-4 bg-gray-50">{children}</main>
+      <main className="flex-1 p-4 bg-gray-50 overflow-auto">{children}</main>
     </div>
   );
 }

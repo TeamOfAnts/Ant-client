@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { PollScreen } from '../pages/poll/PollScreen';
+import { PollScreen } from '@pages';
 import { Layout } from '../layouts';
 import { ROUTE_POLLS } from './const';
 

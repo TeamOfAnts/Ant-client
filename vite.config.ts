@@ -26,6 +26,8 @@ export default defineConfig({
       '@routes': path.resolve(__dirname, 'src/routes'),
       '@shared': path.resolve(__dirname, 'src/shared'),
       '@features': path.resolve(__dirname, 'src/features'),
+      '@models': path.resolve(__dirname, 'src/models'),
+      '@repositories': path.resolve(__dirname, 'src/repositories'),
       '@': path.resolve(__dirname, 'src'),
     },
   },
