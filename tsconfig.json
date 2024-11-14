@@ -3,11 +3,13 @@
     "target": "ES2022",
     "lib": ["dom", "ES2023"],
     "skipLibCheck": true,
+    "allowJs": true,
     "module": "ESNext",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true,
+    "jsxImportSource": "react",
 
     /* Bundler mode */
     "moduleResolution": "Bundler",
@@ -19,6 +21,7 @@
 
     /* Linting */
     "strict": true,
+    "strictNullChecks": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -28,7 +31,7 @@
 
     /* paths */
     "baseUrl": "./",
-    "typeRoots": ["./node_modules/@types", "src/@types"],
+    "typeRoots": ["./node_modules/@types"],
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@libs/*": ["src/app/shared/libs/*"],
