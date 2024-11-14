@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { SideBar } from '@features';
+import { SideBar } from './SideBar';
 
 function Layout(props: { children: ReactNode }) {
   // prop destruction

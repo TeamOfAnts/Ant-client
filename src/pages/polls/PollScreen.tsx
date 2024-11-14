@@ -1,7 +1,7 @@
 import { pollRepository } from '@repositories';
 import { useEffect, useState } from 'react';
 import { Poll } from '@models';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, Progress } from '@shared/ui';
+import { PollCard } from '@features/polls';
 
 function PollScreen(props: {}) {
   // prop destruction
@@ -33,22 +33,7 @@ function PollScreen(props: {}) {
           <div className="grid grid-cols-4 grid-rows-auto gap-3 ">
             {activePolls.map((poll) => {
               const totalVotes = poll.options.reduce((acc, option) => acc + option.votes, 0);
-              return (
-                <Card key={poll.id} className="w-[320px]">
-                  <CardHeader>
-                    <CardTitle>{poll.title}</CardTitle>
-                    <CardDescription>{poll.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    {poll.options.map((option) => (
-                      <div key={option.id}>
-                        <p>{option.description}</p>
-                        <Progress value={(option.votes / totalVotes) * 100} />
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
-              );
+              return <PollCard key={poll.id} poll={poll} totalVotes={totalVotes} />;
             })}
           </div>
         </div>
@@ -58,22 +43,7 @@ function PollScreen(props: {}) {
           <div className="grid grid-cols-4 grid-rows-auto gap-3 ">
             {closedPolls.map((poll) => {
               const totalVotes = poll.options.reduce((acc, option) => acc + option.votes, 0);
-              return (
-                <Card key={poll.id} className="w-[320px]">
-                  <CardHeader>
-                    <CardTitle>{poll.title}</CardTitle>
-                    <CardDescription>{poll.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    {poll.options.map((option) => (
-                      <div key={option.id}>
-                        <p>{option.description}</p>
-                        <Progress value={(option.votes / totalVotes) * 100} />
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
-              );
+              return <PollCard key={poll.id} poll={poll} totalVotes={totalVotes} />;
             })}
           </div>
         </div>

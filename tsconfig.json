@@ -34,7 +34,7 @@
       "@libs/*": ["src/shared/libs/*"],
       "@pages": ["src/pages"],
       "@shared/*": ["src/shared/*"],
-      "@features": ["src/features"],
+      "@features/*": ["src/features/*"],
       "@models": ["src/models"],
       "@repositories": ["src/repositories"],
       "@/*": ["./src/*"]
