@@ -30,7 +30,7 @@ function PollScreen(props: {}) {
       <div className="flex flex-col space-y-24">
         <div className="flex flex-col space-y-4">
           <h3 className="text-xl">진행중인 투표</h3>
-          <div className="grid grid-cols-4 grid-rows-auto gap-3 ">
+          <div className="grid lg:grid-cols-4 grid-rows-auto auto-rows-max gap-10 md:grid-cols-3 sm:grid-cols-2">
             {activePolls.map((poll) => {
               const totalVotes = poll.options.reduce((acc, option) => acc + option.votes, 0);
               return <PollCard key={poll.id} poll={poll} totalVotes={totalVotes} />;
@@ -40,7 +40,7 @@ function PollScreen(props: {}) {
 
         <div className="flex flex-col space-y-4">
           <h3 className="text-xl">완료된 투표</h3>
-          <div className="grid grid-cols-4 grid-rows-auto gap-3 ">
+          <div className="grid lg:grid-cols-4 grid-rows-auto auto-rows-max gap-10 md:grid-cols-3 sm:grid-cols-2">
             {closedPolls.map((poll) => {
               const totalVotes = poll.options.reduce((acc, option) => acc + option.votes, 0);
               return <PollCard key={poll.id} poll={poll} totalVotes={totalVotes} />;
