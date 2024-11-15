@@ -1,7 +1,7 @@
 import { pollRepository } from '@repositories';
 import { useEffect, useState } from 'react';
 import { Poll } from '@models';
-import { PollCard } from '@features/polls';
+import { CreatePollDialog, PollCard } from '@features/polls';
 
 function PollScreen(props: {}) {
   // prop destruction
@@ -25,7 +25,10 @@ function PollScreen(props: {}) {
   // handlers
   return (
     <div>
-      <h1 className="text-3xl mb-24">Polls</h1>
+      <div className="flex justify-between">
+        <h1 className="text-3xl mb-24">Polls</h1>
+        <CreatePollDialog />
+      </div>
 
       <div className="flex flex-col space-y-24">
         <div className="flex flex-col space-y-4">

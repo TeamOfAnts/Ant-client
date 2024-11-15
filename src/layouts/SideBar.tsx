@@ -12,7 +12,7 @@ function SideBar(props: {}) {
   // effects
   // handlers
   return (
-    <div className="w-16 bg-gray-100 h-full flex flex-col items-center py-4 space-y-8 border-r-4 border-primary">
+    <div className="w-16 bg-gray-100 h-full flex flex-col items-center py-4 space-y-8 border-r-4 bg-gray/10 border-primary">
       <div className="flex flex-col justify-between align-center py-8 px-1 w-full h-full">
         <div className="flex flex-row justify-center">
           <Button
