@@ -10,6 +10,7 @@ function PollCard(props: { poll: Poll; totalVotes: number; className?: string })
   const [optionCheckedOf, setOptionCheckedOf] = useState<Record<number, boolean>>(
     poll.options.reduce((acc, option) => ({ ...acc, [option.id]: false }), {}),
   );
+  // form hooks
   // query hooks
   // calculated values
   // effects

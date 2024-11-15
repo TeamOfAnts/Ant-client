@@ -9,6 +9,7 @@ function PollScreen(props: {}) {
   const [activePolls, setActivePolls] = useState<Poll[]>([]);
   const [closedPolls, setClosedPolls] = useState<Poll[]>([]);
   // state, ref hooks
+  // form hooks
   // query hooks
   // calculated values
   // effects

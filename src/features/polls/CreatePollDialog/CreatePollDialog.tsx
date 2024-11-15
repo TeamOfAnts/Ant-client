@@ -18,6 +18,7 @@ function CreatePollDialog(props: {}) {
   const [options, setOptions] = useState<{ id: string }[]>(
     Array.from({ length: 2 }).map((_, i) => ({ id: i.toString() })),
   );
+  // form hooks
   // query hooks
   // calculated values
   // effects
