@@ -2,17 +2,18 @@ import { DialogDescription } from '@radix-ui/react-dialog';
 import {
   Button,
   Dialog,
+  DialogCloseButton,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
   Input,
 } from '@shared/ui';
 import { useState } from 'react';
 
-function CreatePollDialog(props: {}) {
+function CreatePollDialog(props: { onClose: () => void }) {
   // prop destruction
+  const { onClose } = props;
   // lib hooks
   // state, ref hooks
   const [options, setOptions] = useState<{ id: string }[]>(
@@ -24,13 +25,13 @@ function CreatePollDialog(props: {}) {
   // effects
   // handlers
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button>Create Poll</Button>
-      </DialogTrigger>
+    <Dialog open>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create Poll</DialogTitle>
+          <div className="flex items-center justify-between">
+            <DialogTitle>Create Poll</DialogTitle>
+            <DialogCloseButton onClose={onClose} />
+          </div>
           <DialogDescription>당신만의 투표를 만들어보세요</DialogDescription>
         </DialogHeader>
         {options.map((option) => (
@@ -47,7 +48,9 @@ function CreatePollDialog(props: {}) {
         ))}
         <Button onClick={() => setOptions((prev) => [...prev, { id: Math.random().toString() }])}>+</Button>
         <DialogFooter>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" onClick={onClose}>
+            Submit
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

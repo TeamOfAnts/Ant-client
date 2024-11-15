@@ -2,6 +2,7 @@ import { pollRepository } from '@repositories';
 import { useEffect, useState } from 'react';
 import { Poll } from '@models';
 import { CreatePollDialog, PollCard } from '@features/polls';
+import { Button, DialogButton } from '@shared/ui';
 
 function PollScreen(props: {}) {
   // prop destruction
@@ -26,9 +27,11 @@ function PollScreen(props: {}) {
   // handlers
   return (
     <div>
-      <div className="flex justify-between">
-        <h1 className="text-3xl mb-24">Polls</h1>
-        <CreatePollDialog />
+      <div className="flex justify-between  mb-9">
+        <h1 className="text-3xl">Polls</h1>
+        <DialogButton render={({ onOpen }) => <Button onClick={onOpen}>Create Poll</Button>}>
+          {({ onClose }) => <CreatePollDialog onClose={onClose} />}
+        </DialogButton>
       </div>
 
       <div className="flex flex-col space-y-24">

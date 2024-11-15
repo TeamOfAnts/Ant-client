@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { X } from 'lucide-react';
+import CloseIcon from '@assets/icons/close.svg';
 
 import { cn } from '@libs/utils';
 
@@ -42,10 +42,6 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-        <X className="h-4 w-4" />
-        <span className="sr-only">Close</span>
-      </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPortal>
 ));
@@ -81,6 +77,70 @@ const DialogDescription = React.forwardRef<
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
+function DialogButton(props: {
+  render: React.VFC<{ onOpen: () => void }>;
+  children: React.VFC<{ onClose: () => void; onKeyDown: React.KeyboardEventHandler }>;
+  className?: string;
+}) {
+  // prop destruction
+  const { render, children, className } = props;
+  // lib hooks
+  // state, ref, querystring hooks
+  const [open, setOpen] = React.useState(false);
+  // form hooks
+  // query hooks
+  // calculated values
+  // effects
+  // handlers
+  const handleOpen = React.useCallback(() => {
+    setOpen(true);
+  }, [setOpen]);
+
+  const handleClose = React.useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
+
+  const handleKeyDown = React.useCallback((e: any) => {
+    e.stopPropagation();
+  }, []);
+
+  return (
+    <div
+      // NOTE: Menu를 통해 Dialog을 열었을 경우, Tab키에 의한 다이얼로그 닫힘 현상을 막기 위함.
+      onKeyDown={(event) => {
+        if (event.key === 'Tab') {
+          event.stopPropagation();
+        }
+      }}
+      className={className}
+    >
+      {render({ onOpen: handleOpen })}
+      {open && children({ onClose: handleClose, onKeyDown: handleKeyDown })}
+    </div>
+  );
+}
+
+function DialogCloseButton(props: { className?: string; onClose: () => void }) {
+  // prop destruction
+  const { className, onClose } = props;
+  // lib hooks
+  // state, ref, querystring hooks
+  // form hooks
+  // query hooks
+  // calculated values
+  // effects
+  // handlers
+  return (
+    <div
+      className={`h-4 w-4 cursor-pointer rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground ${className}`}
+      onClick={onClose}
+    >
+      <CloseIcon />
+      <span className="sr-only">Close</span>
+    </div>
+  );
+}
+
 export {
   Dialog,
   DialogPortal,
@@ -92,4 +152,6 @@ export {
   DialogFooter,
   DialogTitle,
   DialogDescription,
+  DialogButton,
+  DialogCloseButton,
 };
