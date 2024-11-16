@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { PollScreen, UserScreen } from '@pages';
+import { LoginScreen, PollScreen, UserScreen } from '@pages';
 import { Layout } from '../layouts';
 import { ROUTE_POLLS, ROUTE_USERS } from './const';
 
@@ -17,7 +17,10 @@ function AppRouter(props: {}) {
       <Layout>
         <Routes>
           <Route path={ROUTE_POLLS} element={<PollScreen />} />
-          <Route path={ROUTE_USERS} element={<UserScreen />} />
+          <Route path={ROUTE_USERS}>
+            <Route path="" element={<UserScreen />} />
+            <Route path="login" element={<LoginScreen />} />
+          </Route>
         </Routes>
       </Layout>
     </Router>
