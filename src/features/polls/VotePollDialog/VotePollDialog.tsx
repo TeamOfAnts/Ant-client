@@ -28,7 +28,7 @@ function VotePollDialog(props: { onClose: () => void; poll: Poll }) {
   // handlers
 
   return (
-    <Dialog open>
+    <Dialog open onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader title="Vote" hasCloseButton onClose={onClose} />
         <div className="flex flex-col space-y-4">
