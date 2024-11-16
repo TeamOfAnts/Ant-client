@@ -27,11 +27,7 @@ function CreatePollDialog(props: { onClose: () => void }) {
   return (
     <Dialog open>
       <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <div className="flex items-center justify-between">
-            <DialogTitle>Create Poll</DialogTitle>
-            <DialogCloseButton onClose={onClose} />
-          </div>
+        <DialogHeader title="Create Poll" hasCloseButton onClose={onClose}>
           <DialogDescription>당신만의 투표를 만들어보세요</DialogDescription>
         </DialogHeader>
         {options.map((option) => (

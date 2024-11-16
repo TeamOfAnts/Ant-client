@@ -39,8 +39,7 @@ function PollScreen(props: {}) {
           <h3 className="text-xl">진행중인 투표</h3>
           <div className="grid lg:grid-cols-4 grid-rows-auto auto-rows-max gap-10 md:grid-cols-3 sm:grid-cols-2">
             {activePolls.map((poll) => {
-              const totalVotes = poll.options.reduce((acc, option) => acc + option.votes, 0);
-              return <PollCard key={poll.id} poll={poll} totalVotes={totalVotes} />;
+              return <PollCard key={poll.id} poll={poll} />;
             })}
           </div>
         </div>
@@ -50,7 +49,7 @@ function PollScreen(props: {}) {
           <div className="grid lg:grid-cols-4 grid-rows-auto auto-rows-max gap-10 md:grid-cols-3 sm:grid-cols-2">
             {closedPolls.map((poll) => {
               const totalVotes = poll.options.reduce((acc, option) => acc + option.votes, 0);
-              return <PollCard key={poll.id} poll={poll} totalVotes={totalVotes} />;
+              return <PollCard key={poll.id} poll={poll} />;
             })}
           </div>
         </div>

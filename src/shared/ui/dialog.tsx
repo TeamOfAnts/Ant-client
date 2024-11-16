@@ -47,8 +47,21 @@ const DialogContent = React.forwardRef<
 ));
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
-const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)} {...props} />
+const DialogHeader = ({
+  className,
+  title,
+  hasCloseButton,
+  children,
+  onClose,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & { hasCloseButton?: boolean; onClose?: () => void }) => (
+  <div className={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)} {...props}>
+    <div className="flex items-center justify-between">
+      {title && <DialogTitle>{title}</DialogTitle>}
+      {hasCloseButton ? <DialogCloseButton onClose={onClose} /> : null}
+    </div>
+    {children}
+  </div>
 );
 DialogHeader.displayName = 'DialogHeader';
 
@@ -120,7 +133,7 @@ function DialogButton(props: {
   );
 }
 
-function DialogCloseButton(props: { className?: string; onClose: () => void }) {
+function DialogCloseButton(props: { className?: string; onClose?: () => void }) {
   // prop destruction
   const { className, onClose } = props;
   // lib hooks
