@@ -13,6 +13,10 @@ export default defineConfig({
       include: '**/*.svg',
     }),
   ],
+  server: {
+    port: Number(process.env.PORT),
+    host: '0.0.0.0',
+  },
   root: 'src',
   build: {
     outDir: '../dist',
