@@ -1,14 +1,4 @@
-import {
-  Button,
-  Checkbox,
-  Dialog,
-  DialogCloseButton,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  Progress,
-} from '@shared/ui';
+import { Button, Checkbox, Dialog, DialogContent, DialogFooter, DialogHeader, Progress } from '@shared/ui';
 import { Poll } from '@models';
 import { useState } from 'react';
 

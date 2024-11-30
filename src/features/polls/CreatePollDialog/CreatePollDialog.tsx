@@ -1,14 +1,5 @@
 import { DialogDescription } from '@radix-ui/react-dialog';
-import {
-  Button,
-  Dialog,
-  DialogCloseButton,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  Input,
-} from '@shared/ui';
+import { Button, Dialog, DialogContent, DialogFooter, DialogHeader, Input } from '@shared/ui';
 import { useState } from 'react';
 
 function CreatePollDialog(props: { onClose: () => void }) {

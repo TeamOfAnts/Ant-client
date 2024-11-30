@@ -1,6 +1,6 @@
 module.exports = {
-  extends: ['react-app', 'plugin:import/typescript', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
-  plugins: ['prettier', 'react', '@typescript-eslint'],
+  extends: ['react-app', 'plugin:import/typescript', 'plugin:prettier/recommended', 'plugin:react-hooks/recommended'],
+  plugins: ['prettier', 'react', 'react-hooks'],
   settings: {
     'import/resolver': {
       node: {
@@ -29,6 +29,7 @@ module.exports = {
     ],
     'no-nested-ternary': 'error',
     'no-console': 'warn',
+    'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
   },
 };

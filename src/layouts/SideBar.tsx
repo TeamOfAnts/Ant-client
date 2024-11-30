@@ -1,4 +1,4 @@
-import { Button, Divider, ModeToggle } from '@shared/ui';
+import { Button, ModeToggle } from '@shared/ui';
 import Vote from '@assets/icons/vote.svg';
 import User from '@assets/icons/user.svg';
 import { useNavigate } from 'react-router-dom';
