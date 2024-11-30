@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { SideBar } from './SideBar';
+import { Toaster } from '@shared/ui';
 
 function Layout(props: { children: ReactNode }) {
   // prop destruction
@@ -14,7 +15,8 @@ function Layout(props: { children: ReactNode }) {
   return (
     <div className="flex h-screen">
       <SideBar />
-      <main className="flex-1 p-4 bg-gray-50 overflow-auto">{children}</main>
+      <main className="flex-1 p-4 bg-gray-50 overflow-auto w-full h-full">{children}</main>
+      <Toaster />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
   darkMode: ['class'],
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
@@ -13,6 +13,7 @@ export default {
       black: '#17171B',
       blue: '#1fb6ff',
       purple: '#7e5bef',
+      red: '#ff4949',
       pink: '#ff49db',
       orange: '#ff7849',
       green: '#13ce66',
@@ -73,3 +74,5 @@ export default {
   },
   plugins: [require('tailwindcss-animate')],
 };
+
+export default config;

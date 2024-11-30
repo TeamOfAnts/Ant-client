@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { CallbackScreen, LoginScreen, PollScreen, UserScreen } from '@pages';
+import { CallbackScreen, LoginScreen, PollScreen, UserNickNameAuditScreen, UserScreen } from '@pages';
 import { Layout } from '../layouts';
 import { ROUTE_AUTH, ROUTE_POLLS, ROUTE_USERS } from './const';
 
@@ -23,6 +23,7 @@ function AppRouter(props: {}) {
           </Route>
           <Route path={ROUTE_USERS}>
             <Route path="" element={<UserScreen />} />
+            <Route path="nickname" element={<UserNickNameAuditScreen />} />
           </Route>
         </Routes>
       </Layout>

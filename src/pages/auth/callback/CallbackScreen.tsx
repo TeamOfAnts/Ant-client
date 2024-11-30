@@ -1,5 +1,5 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { ROUTE_AUTH_LOGIN } from '@routes';
+import { ROUTE_AUTH_LOGIN, ROUTE_USERS_NICKNAME } from '@routes';
 import { useEffect } from 'react';
 import { loadAccessToken } from '@providers';
 import { useQuery } from '@libs/query';
@@ -34,7 +34,7 @@ function CallbackScreen(props: {}) {
   useEffect(() => {
     if (accessToken) {
       loadAccessToken(accessToken);
-      navigate('/users/nickname');
+      navigate(ROUTE_USERS_NICKNAME);
     }
   }, [accessToken, navigate]);
   // handlers

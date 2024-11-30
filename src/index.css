@@ -1,10 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 184 30% 10%;
+    --background: 0 0% 100%; /* 흰색 배경 */
+    --foreground: 184 30% 10%; /* 어두운 텍스트 */
     --card: 0 0% 100%;
     --card-foreground: 184 30% 10%;
     --popover: 0 0% 100%;
@@ -24,28 +25,30 @@
     --ring: 184 68.83% 54.12%;
     --radius: 0.5rem;
   }
+
   .dark {
-    --background: 184 30% 5%;
-    --foreground: 184 10% 90%;
-    --card: 184 30% 7%;
-    --card-foreground: 184 10% 90%;
-    --popover: 184 30% 7%;
-    --popover-foreground: 184 10% 90%;
-    --primary: 184 60% 40%;
+    --background: 215 27% 10%; /* 딥 그레이 배경 */
+    --foreground: 210 17% 85%; /* 밝은 그레이 텍스트 */
+    --card: 215 27% 12%;
+    --card-foreground: 210 17% 85%;
+    --popover: 215 27% 12%;
+    --popover-foreground: 210 17% 85%;
+    --primary: 184 68.83% 65%; /* 약간 밝은 블루 */
     --primary-foreground: 184 10% 98%;
-    --secondary: 184 30% 15%;
-    --secondary-foreground: 184 10% 90%;
-    --muted: 184 20% 15%;
-    --muted-foreground: 184 10% 60%;
-    --accent: 184 30% 15%;
-    --accent-foreground: 184 10% 90%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 90%;
-    --border: 184 30% 15%;
-    --input: 184 30% 15%;
-    --ring: 184 60% 40%;
+    --secondary: 215 15% 18%;
+    --secondary-foreground: 210 17% 75%;
+    --muted: 215 10% 20%;
+    --muted-foreground: 210 10% 65%;
+    --accent: 184 68.83% 65%;
+    --accent-foreground: 184 10% 98%;
+    --destructive: 0 84.2% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 215 15% 25%;
+    --input: 215 15% 25%;
+    --ring: 184 68.83% 65%;
   }
 }
+
 @layer base {
   * {
     @apply border-border;

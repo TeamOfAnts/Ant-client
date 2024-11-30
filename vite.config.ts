@@ -33,6 +33,7 @@ export default defineConfig({
       '@repositories': path.resolve(__dirname, 'src/repositories'),
       '@routes': path.resolve(__dirname, 'src/routes'),
       '@providers': path.resolve(__dirname, 'src/app/providers'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@': path.resolve(__dirname, 'src'),
     },
   },

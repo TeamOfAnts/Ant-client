@@ -1,11 +1,14 @@
 import { httpClient } from '@libs/http-clients';
-import { stringify } from 'querystring';
+import queryString from 'query-string';
+import { queryKeyMap } from '@libs/query';
 
 export const authRepository = {
   async callback(params: { provider: string; code: String }) {
     return httpClient.get<string>('/users/sign-in', {
       params,
-      paramsSerializer: (params) => stringify(params),
+      paramsSerializer: (params) => queryString.stringify(params),
     });
   },
 };
+
+queryKeyMap.set(authRepository.callback, ['User']);

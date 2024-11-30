@@ -39,6 +39,7 @@
       "@repositories": ["src/repositories"],
       "@routes": ["src/routes"],
       "@providers": ["src/app/providers"],
+      "@hooks": ["src/hooks"],
       "@/*": ["./src/*"]
     },
     "outDir": "./dist"
