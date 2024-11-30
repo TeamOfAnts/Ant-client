@@ -32,6 +32,7 @@ export default defineConfig({
       '@models': path.resolve(__dirname, 'src/models'),
       '@repositories': path.resolve(__dirname, 'src/repositories'),
       '@routes': path.resolve(__dirname, 'src/routes'),
+      '@providers': path.resolve(__dirname, 'src/app/providers'),
       '@': path.resolve(__dirname, 'src'),
     },
   },

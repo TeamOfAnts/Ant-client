@@ -38,6 +38,7 @@
       "@models": ["src/models"],
       "@repositories": ["src/repositories"],
       "@routes": ["src/routes"],
+      "@providers": ["src/app/providers"],
       "@/*": ["./src/*"]
     },
     "outDir": "./dist"

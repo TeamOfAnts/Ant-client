@@ -29,5 +29,6 @@ module.exports = {
     ],
     'no-nested-ternary': 'error',
     'no-console': 'warn',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };

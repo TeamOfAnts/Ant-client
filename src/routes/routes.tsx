@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { LoginScreen, PollScreen, UserScreen } from '@pages';
+import { CallbackScreen, LoginScreen, PollScreen, UserScreen } from '@pages';
 import { Layout } from '../layouts';
-import { ROUTE_POLLS, ROUTE_USERS } from './const';
+import { ROUTE_AUTH, ROUTE_POLLS, ROUTE_USERS } from './const';
 
 function AppRouter(props: {}) {
   // prop destruction
@@ -17,9 +17,12 @@ function AppRouter(props: {}) {
       <Layout>
         <Routes>
           <Route path={ROUTE_POLLS} element={<PollScreen />} />
+          <Route path={ROUTE_AUTH}>
+            <Route path="login" element={<LoginScreen />} />
+            <Route path="callback" element={<CallbackScreen />} />
+          </Route>
           <Route path={ROUTE_USERS}>
             <Route path="" element={<UserScreen />} />
-            <Route path="login" element={<LoginScreen />} />
           </Route>
         </Routes>
       </Layout>

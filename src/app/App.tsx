@@ -1,11 +1,14 @@
-import { ThemeProvider } from '@shared/libs/theme';
-import { AppRouter } from '../routes';
+import { ThemeProvider } from '@libs/theme';
+import { AppRouter } from '@routes';
+import { AuthProvider } from '@providers';
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-      <AppRouter />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+        <AppRouter />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 
