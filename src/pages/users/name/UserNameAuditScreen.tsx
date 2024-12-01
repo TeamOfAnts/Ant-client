@@ -9,10 +9,10 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTE_POLLS } from '@routes';
 
 const validationSchema = z.object({
-  name: z.string().min(1, '닉네임을 입력해주세요.'),
+  name: z.string().min(1, '이름을 입력해주세요.'),
 });
 
-function UserNickNameAuditScreen(props: {}) {
+function UserNameAuditScreen(props: {}) {
   // prop destruction
   // lib hooks
   const { toast } = useToast();
@@ -31,10 +31,10 @@ function UserNickNameAuditScreen(props: {}) {
     },
   });
   // query hooks
-  const { mutateAsync: updateNickName, isLoading } = useMutation(userRepository.updateNickName, {
+  const { mutateAsync: updateName, isLoading } = useMutation(userRepository.updateName, {
     onCompleted: () => {
       toast({
-        title: '닉네임이 설정되었습니다.',
+        title: '이름이 설정되었습니다.',
         duration: 1500,
       });
 
@@ -45,7 +45,7 @@ function UserNickNameAuditScreen(props: {}) {
     },
     onError: (error) => {
       toast({
-        title: '닉네임 설정에 실패했습니다.',
+        title: '이름 설정에 실패했습니다.',
         description: error.message,
         color: 'red',
         duration: 1500,
@@ -60,8 +60,8 @@ function UserNickNameAuditScreen(props: {}) {
     <div className="flex w-full h-full justify-center items-center">
       <Card>
         <CardHeader>
-          <CardTitle>닉네임 설정</CardTitle>
-          <CardDescription>스터디에서 활동할 때 사용될 닉네임을 설정 해주세요.</CardDescription>
+          <CardTitle>이름 설정</CardTitle>
+          <CardDescription>스터디에서 활동할 때 사용될 이름을 설정 해주세요.</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col juasync stify-between items-center space-y-5">
@@ -75,7 +75,7 @@ function UserNickNameAuditScreen(props: {}) {
                 disabled={!isValid}
                 loading={isLoading}
                 onClick={handleSubmit(async ({ name }) => {
-                  await updateNickName({ name });
+                  await updateName({ name });
                 })}
               >
                 제출
@@ -88,4 +88,4 @@ function UserNickNameAuditScreen(props: {}) {
   );
 }
 
-export { UserNickNameAuditScreen };
+export { UserNameAuditScreen };

@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useMemo, useState } fr
 import type { User } from '@models';
 import Cookie from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import { ROUTE_AUTH_LOGIN } from '@routes';
+import { ROUTE_AUTH_LOGIN, ROUTE_USERS_NAME } from '@routes';
 import { userRepository } from '@repositories';
 
 const AuthContext = createContext<{ getUser(): User | undefined; setUser(user?: User): void }>({

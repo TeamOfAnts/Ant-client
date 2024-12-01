@@ -1,2 +1,2 @@
-export * from './nickname';
+export * from './name';
 export * from './UserScreen';

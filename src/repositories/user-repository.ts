@@ -7,10 +7,10 @@ export const userRepository = {
     return httpClient.get<User>('/users/self');
   },
 
-  async updateNickName(params: { name: string }) {
-    return httpClient.patch('/users/nickname', params);
+  async updateName(params: { name: string }) {
+    return httpClient.patch('/users/name', params);
   },
 };
 
-queryKeyMap.set(userRepository.self, ['Self']);
-queryKeyMap.set(userRepository.updateNickName, ['User']);
+queryKeyMap.set(userRepository.self, ['User']);
+queryKeyMap.set(userRepository.updateName, ['User']);

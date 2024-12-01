@@ -14,4 +14,4 @@ export const ROUTE_POLLS = '/polls';
  * Users
  */
 export const ROUTE_USERS = '/users';
-export const ROUTE_USERS_NICKNAME = `${ROUTE_USERS}/nickname`;
+export const ROUTE_USERS_NAME = `${ROUTE_USERS}/name`;
