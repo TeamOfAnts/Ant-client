@@ -7,6 +7,7 @@ import { userRepository } from '@repositories';
 import { useToast } from '@hooks';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_POLLS } from '@routes';
+import { useUser } from '@providers';
 
 const validationSchema = z.object({
   name: z.string().min(1, '이름을 입력해주세요.'),
@@ -17,6 +18,7 @@ function UserNameAuditScreen(props: {}) {
   // lib hooks
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [user] = useUser();
   // state, ref hooks
   // form hooks
   const {
@@ -27,7 +29,7 @@ function UserNameAuditScreen(props: {}) {
     mode: 'onChange',
     resolver: zodResolver(validationSchema),
     defaultValues: {
-      name: '',
+      name: user.name,
     },
   });
   // query hooks
