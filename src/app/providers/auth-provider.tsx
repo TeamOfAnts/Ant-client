@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useMemo, useState } fr
 import type { User } from '@models';
 import Cookie from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import { ROUTE_AUTH_LOGIN, ROUTE_USERS_NAME } from '@routes';
+import { ROUTE_AUTH_LOGIN } from '@routes';
 import { userRepository } from '@repositories';
 
 const AuthContext = createContext<{ getUser(): User | undefined; setUser(user?: User): void }>({
@@ -16,8 +16,16 @@ function getAccessToken() {
   return Cookie.get('accessToken');
 }
 
+export function getRefreshToken() {
+  return Cookie.get('refreshToken');
+}
+
 export function loadAccessToken(token: string) {
   return Cookie.set('accessToken', token);
+}
+
+export function loadRefreshToken(token: string) {
+  return Cookie.set('refreshToken', token);
 }
 
 export function AuthProvider(props: { children?: ReactNode }) {

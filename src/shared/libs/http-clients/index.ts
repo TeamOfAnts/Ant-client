@@ -1,6 +1,7 @@
 import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { API_ENDPOINT } from '../../config';
-
+import Cookie from 'js-cookie';
+import { getRefreshToken, loadRefreshToken } from '@providers';
 export const httpClient = (() => {
   const axios = Axios.create({
     baseURL: API_ENDPOINT,
@@ -18,7 +19,25 @@ export const httpClient = (() => {
 
   axios.interceptors.response.use(
     (res) => res,
-    (err) => {
+    async (err) => {
+      if (err?.response?.data?.errorCode === 'EXPIRED') {
+        Cookie.remove('accessToken');
+        const { data: accessToken } = await Axios.post<string>(`${API_ENDPOINT}/auth/refresh`, {
+          refreshToken: getRefreshToken(),
+        });
+
+        loadRefreshToken(accessToken);
+
+        const retryConfig = {
+          ...err.config,
+          headers: {
+            ...err.config.headers,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+        return axios(retryConfig);
+      }
+
       if (err?.response?.data?.errorMessage) {
         err.message = err?.response?.data?.errorMessage || err.message;
       }
