@@ -12,7 +12,7 @@ const AuthContext = createContext<{ getUser(): User | undefined; setUser(user?: 
   setUser() {},
 });
 
-function getAccessToken() {
+export function getAccessToken() {
   return Cookie.get('accessToken');
 }
 

@@ -1,7 +1,7 @@
 import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { API_ENDPOINT } from '../../config';
 import Cookie from 'js-cookie';
-import { getRefreshToken, loadRefreshToken } from '@providers';
+import { getAccessToken, getRefreshToken, loadAccessToken } from '@providers';
 export const httpClient = (() => {
   const axios = Axios.create({
     baseURL: API_ENDPOINT,
@@ -9,33 +9,30 @@ export const httpClient = (() => {
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
   });
   axios.interceptors.request.use((config) => {
+    if (getAccessToken()) {
+      config.headers.Authorization = `Bearer ${getAccessToken()}`;
+    }
+
     if (!config?.headers) {
       throw new Error(`Expected 'config' and 'config.headers' not to be undefined`);
     }
+
     config.headers['X-Requested-With'] = 'XMLHttpRequest';
-    config.headers.Accept = '*/*';
+    config.headers.Accept = '*/*;';
     return config;
   });
 
   axios.interceptors.response.use(
     (res) => res,
     async (err) => {
-      if (err?.response?.data?.errorCode === 'EXPIRED') {
+      if (err?.response?.data?.errorMessage === 'Access token이 만료되었습니다.') {
         Cookie.remove('accessToken');
         const { data: accessToken } = await Axios.post<string>(`${API_ENDPOINT}/auth/refresh`, {
           refreshToken: getRefreshToken(),
         });
 
-        loadRefreshToken(accessToken);
-
-        const retryConfig = {
-          ...err.config,
-          headers: {
-            ...err.config.headers,
-            Authorization: `Bearer ${accessToken}`,
-          },
-        };
-        return axios(retryConfig);
+        loadAccessToken(accessToken);
+        return axios(err.config);
       }
 
       if (err?.response?.data?.errorMessage) {
