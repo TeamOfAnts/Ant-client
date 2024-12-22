@@ -66,7 +66,7 @@ function UserNameAuditScreen(props: {}) {
           <CardDescription>스터디에서 활동할 때 사용될 이름을 설정 해주세요.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col juasync stify-between items-center space-y-5">
+          <div className="flex flex-col justify-between items-center space-y-5">
             <Controller
               control={control}
               name="name"

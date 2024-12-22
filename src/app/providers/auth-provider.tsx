@@ -94,11 +94,10 @@ export const useUser = <T extends boolean = false>(options?: {
 }): T extends false ? [User] : [User | undefined] => {
   const { getUser } = useContext(AuthContext);
   const user = getUser();
-  const navigate = useNavigate();
   const canBeUnauthenticated = options?.canBeUnauthenticated ?? false;
 
   if (!user && !canBeUnauthenticated) {
-    navigate(ROUTE_AUTH_LOGIN);
+    window.location.href = ROUTE_AUTH_LOGIN;
   }
 
   return [user!];

@@ -1,9 +1,9 @@
-import { useSearchParams } from 'react-router-dom';
-import { ROUTE_USERS_NAME } from '@routes';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { ROUTE_POLLS, ROUTE_USERS_NAME } from '@routes';
 import { loadAccessToken, loadRefreshToken } from '@providers';
 import { useQuery } from '@libs/query';
 import { authRepository } from '@repositories';
-import { useToast } from '../../../hooks';
+import { useToast } from '@hooks';
 
 function CallbackScreen(props: {}) {
   // prop destruction
@@ -12,6 +12,7 @@ function CallbackScreen(props: {}) {
   const code = querystring.get('code');
   const provider = querystring.get('provider');
   const { toast } = useToast();
+  const navigate = useNavigate();
   // state, ref hooks
   // form hooks
   // query hooks
@@ -24,17 +25,21 @@ function CallbackScreen(props: {}) {
       if (data) {
         loadAccessToken(data.accessToken);
         loadRefreshToken(data.refreshToken);
-        window.location.href = ROUTE_USERS_NAME;
+        window.location.href = data.isNew ? ROUTE_USERS_NAME : ROUTE_POLLS;
       }
     },
-    onError: (err) => {
+    onError: () => {
       toast({
         title: '인증에 실패했습니다.',
-        description: err.message,
         color: 'red',
         duration: 1500,
         variant: 'destructive',
       });
+
+      // HACK: 아직 더 좋은 방법을 찾지 못했다.
+      setTimeout(() => {
+        navigate(-1);
+      }, 1500);
     },
   });
   // calculated values

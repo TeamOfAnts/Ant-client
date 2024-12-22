@@ -10,7 +10,11 @@ function UserScreen(props: {}) {
   // calculated values
   // effects
   // handlers
-  return <>this is user screen</>;
+  if (!user) {
+    return null;
+  }
+
+  return <>your name: {user.name}</>;
 }
 
 export { UserScreen };

@@ -3,7 +3,7 @@ import { queryKeyMap } from '@libs/query';
 
 export const authRepository = {
   async callback(params: { provider: string; authorizationCode: string }) {
-    return httpClient.post<{ accessToken: string; refreshToken: string }>('/users/auth', params);
+    return httpClient.post<{ accessToken: string; refreshToken: string; isNew: boolean }>('/users/auth', params);
   },
 };
 
