@@ -1,5 +1,4 @@
-import { CreatePollDialog, PollList } from '@features/polls';
-import { Button, DialogButton } from '@shared/ui';
+import { PollList } from '@features/polls';
 import { useUser } from '@providers';
 
 function PollScreen(props: {}) {
@@ -17,9 +16,9 @@ function PollScreen(props: {}) {
     <div>
       <div className="flex justify-between  mb-9">
         <h1 className="text-3xl">Polls</h1>
-        <DialogButton render={({ onOpen }) => <Button onClick={onOpen}>Create Poll</Button>}>
+        {/* <DialogButton render={({ onOpen }) => <Button onClick={onOpen}>Create Poll</Button>}>
           {({ onClose }) => <CreatePollDialog onClose={onClose} />}
-        </DialogButton>
+        </DialogButton> */}
       </div>
 
       <div className="flex flex-col space-y-24">
