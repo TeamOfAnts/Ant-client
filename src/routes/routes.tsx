@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { CallbackScreen, LoginScreen, PollScreen, UserNameAuditScreen, UserScreen } from '@pages';
+import { CallbackScreen, LoginScreen, NotFound, PollScreen, UserNameAuditScreen, UserScreen } from '@pages';
 import { Layout } from '../layouts';
 import { ROUTE_AUTH, ROUTE_POLLS, ROUTE_USERS } from './const';
 
@@ -26,6 +26,7 @@ function AppRouter(props: {}) {
             <Route path="" element={<UserScreen />} />
             <Route path="name" element={<UserNameAuditScreen />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>
