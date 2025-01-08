@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { CallbackScreen, LoginScreen, PollScreen, UserNameAuditScreen, UserScreen } from '@pages';
 import { Layout } from '../layouts';
 import { ROUTE_AUTH, ROUTE_POLLS, ROUTE_USERS } from './const';
@@ -16,6 +16,7 @@ function AppRouter(props: {}) {
     <Router>
       <Layout>
         <Routes>
+          <Route path="/" element={<Navigate replace to={ROUTE_POLLS} />} />
           <Route path={ROUTE_POLLS} element={<PollScreen />} />
           <Route path={ROUTE_AUTH}>
             <Route path="login" element={<LoginScreen />} />

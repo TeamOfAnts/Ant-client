@@ -3,7 +3,7 @@ import { AppRouter } from '@routes';
 import { AuthProvider } from '@providers';
 import { QueryClient, QueryClientProvider } from '@libs/query';
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnMount: false,

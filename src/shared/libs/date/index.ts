@@ -10,3 +10,16 @@ dayjs.extend(timezone);
 export function formatDateTime({ date, format }: { date: DateTime; format: string }) {
   return dayjs(date).tz('Asia/Seoul').format(format);
 }
+
+const daysOfWeek = {
+  Sun: '일',
+  Mon: '월',
+  Tue: '화',
+  Wed: '수',
+  Thu: '목',
+  Fri: '금',
+  Sat: '토',
+};
+export function getDayOfWeek(date: DateTime) {
+  return daysOfWeek[dayjs(date).tz('Asia/Seoul').format('ddd') as keyof typeof daysOfWeek];
+}

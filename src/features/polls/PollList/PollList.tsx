@@ -5,7 +5,7 @@ import { LoadingProgress, Paginate } from '@shared/ui';
 import { PollCard } from '../PollCard';
 import { useState } from 'react';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 8;
 
 function PollList(props: { status: PollStatus }) {
   // prop destruction
@@ -18,7 +18,7 @@ function PollList(props: { status: PollStatus }) {
   const { data, isLoading } = useQuery(pollRepository.list, {
     variables: {
       status,
-      page,
+      page: page - 1,
       size: PAGE_SIZE,
     },
   });
@@ -27,14 +27,16 @@ function PollList(props: { status: PollStatus }) {
   // effects
   // handlers
   return (
-    <div className="grid lg:grid-cols-4 grid-rows-auto auto-rows-max gap-10 md:grid-cols-3 sm:grid-cols-2">
+    <div className="flex flex-col space-y-4">
       {loading ? (
         <LoadingProgress />
       ) : (
         <>
-          {data.contents.map((poll) => {
-            return <PollCard key={poll.id} poll={poll} />;
-          })}
+          <div className="grid lg:grid-cols-4 grid-rows-auto auto-rows-max gap-10 md:grid-cols-3 sm:grid-cols-2">
+            {data.contents.map((poll) => {
+              return <PollCard key={poll.id} poll={poll} />;
+            })}
+          </div>
           <Paginate total={data.totalCount} limit={PAGE_SIZE} page={page} setPage={setPage} />
         </>
       )}

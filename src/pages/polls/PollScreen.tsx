@@ -21,7 +21,7 @@ function PollScreen(props: {}) {
         </DialogButton> */}
       </div>
 
-      <div className="flex flex-col space-y-24">
+      <div className="flex flex-col space-y-16">
         <div className="flex flex-col space-y-4">
           <h3 className="text-xl">진행중인 투표</h3>
           <PollList status="OPEN" />

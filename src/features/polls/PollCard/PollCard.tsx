@@ -1,6 +1,6 @@
 import { Poll } from '@models';
 import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, DialogButton } from '@shared/ui';
-import { VotePollDialog } from '../VotePollDialog';
+import { VoteDialog } from '@features/schedules/VoteDialog';
 
 function PollCard(props: { poll: Poll; className?: string }) {
   // prop destruction
@@ -22,11 +22,11 @@ function PollCard(props: { poll: Poll; className?: string }) {
         <DialogButton
           render={({ onOpen }) => (
             <Button onClick={onOpen} className="w-full">
-              투표하기
+              {poll.votedSchedules.length ? '투표 수정하기' : '투표하기'}
             </Button>
           )}
         >
-          {({ onClose }) => <VotePollDialog poll={poll} onClose={onClose} />}
+          {({ onClose }) => <VoteDialog poll={poll} onClose={onClose} />}
         </DialogButton>
       </CardContent>
     </Card>
