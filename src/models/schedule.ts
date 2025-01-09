@@ -3,5 +3,5 @@ export class Schedule {
   pollId!: number;
   scheduleOn!: DateTime;
   status!: string;
-  votes!: number;
+  voters!: string[];
 }

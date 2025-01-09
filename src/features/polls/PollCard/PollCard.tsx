@@ -10,6 +10,11 @@ function PollCard(props: { poll: Poll; className?: string }) {
   // form hooks
   // query hooks
   // calculated values
+  const buttonText = (() => {
+    if (poll.status === 'CLOSED') return '결과 보기';
+    if (poll.votedSchedules.length) return '투표 수정하기';
+    return '투표하기';
+  })();
   // effects
   // handlers
   return (
@@ -22,7 +27,7 @@ function PollCard(props: { poll: Poll; className?: string }) {
         <DialogButton
           render={({ onOpen }) => (
             <Button onClick={onOpen} className="w-full">
-              {poll.votedSchedules.length ? '투표 수정하기' : '투표하기'}
+              {buttonText}
             </Button>
           )}
         >

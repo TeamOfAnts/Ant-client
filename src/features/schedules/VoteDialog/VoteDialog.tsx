@@ -7,6 +7,10 @@ import {
   DialogHeader,
   LoadingProgress,
   Progress,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
 } from '@shared/ui';
 import { Poll } from '@models';
 import { useMutation, useQuery } from '@libs/query';
@@ -20,34 +24,36 @@ function VoteDialog(props: { onClose: () => void; poll: Poll }) {
   // lib hooks
   // state, ref hooks
   const [checked, setChecked] = useState<Map<number, boolean>>(new Map(poll.votedSchedules.map((id) => [id, true])));
+  const [open, setOpen] = useState(false);
   // form hooks
   // query hooks
   const { data: schedules, isLoading } = useQuery(scheduleRepository.list, { variables: { pollId: poll.id } });
   const { mutateAsync: vote, isLoading: isVoting } = useMutation(scheduleRepository.vote);
   // calculated values
   const loading = isLoading || !schedules;
-  const totalVotes = schedules?.reduce((acc, schedule) => acc + schedule.votes, 0) ?? 0;
+  const totalVoteCount = schedules?.reduce((acc, schedule) => acc + schedule.voters.length, 0) ?? 0;
   // effects
   // handlers
 
   return (
     <Dialog open onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent className="max-h-[80vh] overflow-auto">
         {loading ? (
           <LoadingProgress />
         ) : (
           <>
             <DialogHeader title="Vote" hasCloseButton onClose={onClose} />
+            <p>총 투표수 : {totalVoteCount}표</p>
             <div className="flex flex-col space-y-4">
               {schedules.map((schedule) => (
                 <div key={schedule.id} className="space-y-1">
                   <label htmlFor={schedule.id.toString()}>
-                    {formatDateTime({ date: schedule.scheduleOn, format: 'YYYY-MM-DD' })}{' '}
-                    {getDayOfWeek(schedule.scheduleOn)}
+                    {formatDateTime({ date: schedule.scheduleOn, format: 'YYYY-MM-DD' })} (
+                    {getDayOfWeek(schedule.scheduleOn)})
                   </label>
                   <div className="flex flex-row items-center space-x-2">
                     <Checkbox
-                      disabled={checked.size >= 3 && !checked.get(schedule.id)}
+                      disabled={poll.status === 'CLOSED' || (checked.size >= 3 && !checked.get(schedule.id))}
                       id={schedule.id.toString()}
                       checked={!!checked.get(schedule.id)}
                       onCheckedChange={(checked) =>
@@ -62,22 +68,34 @@ function VoteDialog(props: { onClose: () => void; poll: Poll }) {
                         })
                       }
                     />
-                    <Progress value={(schedule.votes / totalVotes) * 100} />
+                    <Progress value={(schedule.voters.length / totalVoteCount) * 100} />
+                    <div className="min-w-[24px]">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <span>{schedule.voters.length}표</span>
+                          </TooltipTrigger>
+                          <TooltipContent>{schedule.voters.join(', ')}</TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
             <DialogFooter>
-              <Button
-                type="submit"
-                loading={isVoting}
-                onClick={async () => {
-                  await vote({ scheduleIds: Array.from(checked.keys()) });
-                  onClose();
-                }}
-              >
-                Submit
-              </Button>
+              {poll.status === 'OPEN' && (
+                <Button
+                  type="submit"
+                  loading={isVoting}
+                  onClick={async () => {
+                    await vote({ scheduleIds: Array.from(checked.keys()) });
+                    onClose();
+                  }}
+                >
+                  Submit
+                </Button>
+              )}
             </DialogFooter>
           </>
         )}

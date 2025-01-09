@@ -1,3 +1,4 @@
+export * from './badge';
 export * from './button';
 export * from './card';
 export * from './checkbox';
@@ -6,8 +7,10 @@ export * from './Divider';
 export * from './dropdown-menu';
 export * from './input';
 export * from './loading';
+export * from './Link';
 export * from './mod-toggle';
 export * from './pagination';
 export * from './progress';
 export * from './toast';
 export * from './toaster';
+export * from './tooltip';

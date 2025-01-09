@@ -22,8 +22,7 @@ export const httpClient = (() => {
   axios.interceptors.response.use(
     (res) => res,
     async (err) => {
-      console.log('!!!', err);
-      if (err?.response?.data?.errorMessage === 'Access token이 만료되었습니다.') {
+      if (err?.response?.data?.data?.errorMessage === 'Access token이 만료되었습니다.') {
         Cookie.remove('accessToken');
         const { data: accessToken } = await Axios.post<string>(`${API_ENDPOINT}/auth/refresh`, {
           refreshToken: getRefreshToken(),
