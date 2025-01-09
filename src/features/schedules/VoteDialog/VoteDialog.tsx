@@ -24,7 +24,6 @@ function VoteDialog(props: { onClose: () => void; poll: Poll }) {
   // lib hooks
   // state, ref hooks
   const [checked, setChecked] = useState<Map<number, boolean>>(new Map(poll.votedSchedules.map((id) => [id, true])));
-  const [open, setOpen] = useState(false);
   // form hooks
   // query hooks
   const { data: schedules, isLoading } = useQuery(scheduleRepository.list, { variables: { pollId: poll.id } });

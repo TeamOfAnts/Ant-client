@@ -18,7 +18,7 @@ function PollCard(props: { poll: Poll; className?: string }) {
   // effects
   // handlers
   return (
-    <Card key={poll.id} className={`w-[320px] ${className}`}>
+    <Card key={poll.id} className={`max-w-[340px] ${className}`}>
       <CardHeader>
         <CardTitle>{poll.title}</CardTitle>
         <CardDescription>{poll.description}</CardDescription>
